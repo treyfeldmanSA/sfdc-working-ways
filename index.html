@@ -117,6 +117,28 @@
             background-color: #005e9e;
             border: 2px solid #f7941e;
         }
+        .sprint-day {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 1rem;
+        }
+        .sprint-day:last-child {
+            border-left: 2px solid transparent;
+        }
+        .sprint-day-dot {
+            position: absolute;
+            left: -0.6rem;
+            top: 0.25rem;
+            width: 1.125rem;
+            height: 1.125rem;
+            border-radius: 9999px;
+            background-color: #005e9e;
+            border: 2px solid #f7941e;
+        }
+        .sprint-day.regular .sprint-day-dot {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
         .modal {
             display: none;
             position: fixed;
@@ -801,29 +823,34 @@
                 <div>
                     <h4 class="text-xl font-semibold text-white mb-4 border-b border-[#f7941e] pb-2">Week 1: Focus on Development</h4>
                     
-                    <div class="space-y-4">
-                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                    <div class="space-y-0">
+                        <div class="sprint-day">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 1 (Thursday): Sprint Kickoff</h5>
                             <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Sprint Planning (2h)</p>
                             <p class="text-white/90 text-sm"><strong>Afternoon:</strong> Begin development work.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-white/30">
+                        <div class="sprint-day regular">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 2 (Friday): Development Day</h5>
                             <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-white/30">
+                        <div class="sprint-day regular">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 3 (Monday): Development Day</h5>
                             <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-white/30">
+                        <div class="sprint-day regular">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 4 (Tuesday): Development Day</h5>
                             <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                        <div class="sprint-day">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 5 (Wednesday): Refinement Day</h5>
                             <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Development.</p>
                             <p class="text-white/90 text-sm"><strong>Afternoon:</strong> Backlog Refinement (1h) to prepare for the next sprint.</p>
@@ -835,31 +862,36 @@
                 <div>
                     <h4 class="text-xl font-semibold text-white mb-4 border-b border-[#f7941e] pb-2">Week 2: Focus on Finalization & Release</h4>
                     
-                    <div class="space-y-4">
-                        <div class="pl-4 border-l-2 border-white/30">
+                    <div class="space-y-0">
+                        <div class="sprint-day regular">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 6 (Thursday): Development Day</h5>
                             <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-white/30">
+                        <div class="sprint-day regular">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 7 (Friday): Final Development Day</h5>
                             <p class="text-white/90 text-sm mt-1">The last full day for feature development and coding.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                        <div class="sprint-day">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 8 (Monday): Feature Freeze Day</h5>
                             <p class="text-white/90 text-sm mt-1"><strong>Morning/Afternoon:</strong> Final push to get all code tested, reviewed, and merged.</p>
                             <p class="text-white/90 text-sm"><strong>3:00 PM EST:</strong> Internal Team Demo (The "Dress Rehearsal").</p>
                             <p class="text-white/90 text-sm"><strong>Deadline:</strong> All new feature code is merged by EOD.</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                        <div class="sprint-day">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 9 (Tuesday): Demo Day</h5>
                             <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Buffer time to fix any critical bugs found in the internal demo.</p>
                             <p class="text-white/90 text-sm"><strong>1:00 PM EST:</strong> Sprint Review (The External Demo for stakeholders).</p>
                         </div>
                         
-                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                        <div class="sprint-day">
+                            <div class="sprint-day-dot"></div>
                             <h5 class="font-semibold text-white">Day 10 (Wednesday): Release & Reflect Day</h5>
                             <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Deployment to Production.</p>
                             <p class="text-white/90 text-sm"><strong>2:00 PM:</strong> Sprint Retrospective to discuss the sprint and process.</p>
