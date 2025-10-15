@@ -297,7 +297,8 @@
             position: fixed;
             bottom: 6rem;
             right: 2rem;
-            width: 360px;
+            width: 380px;
+            height: 430px;
             background: white;
             border-radius: 1rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -306,6 +307,8 @@
             transform: scale(0.8) translateY(10px);
             pointer-events: none;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         @media (max-width: 640px) {
             .chatbot-window {
@@ -313,6 +316,7 @@
                 right: 1rem;
                 left: 1rem;
                 bottom: 5rem;
+                height: auto;
             }
             .chatbot-bubble {
                 bottom: 1rem;
@@ -347,8 +351,7 @@
         }
         .chatbot-messages {
             padding: 1rem;
-            min-height: 200px;
-            max-height: 300px;
+            flex: 1;
             overflow-y: auto;
             background: #f5f5f5;
         }
