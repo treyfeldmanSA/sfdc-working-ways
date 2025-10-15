@@ -104,6 +104,98 @@
             transform: translateY(-2px);
             border-color: #f7941e;
         }
+        
+        /* Coupon Popup Styles */
+        .coupon-popup {
+            background: linear-gradient(135deg, #1a4d7a 0%, #0d3a5f 100%);
+            border: 3px dashed #f7941e;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            max-width: 500px;
+            margin: 1rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: popupBounce 0.5s ease-out;
+        }
+        @keyframes popupBounce {
+            0% { transform: scale(0.3) rotate(-5deg); opacity: 0; }
+            50% { transform: scale(1.05) rotate(1deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .coupon-badge {
+            background: #f7941e;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(247, 148, 30, 0.3);
+        }
+        .coupon-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .coupon-close:hover {
+            color: #f7941e;
+        }
+        .coupon-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .coupon-subtitle {
+            color: #f7941e;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .coupon-divider {
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                #f7941e 0px,
+                #f7941e 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 1.5rem 0;
+        }
+        .coupon-details {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .coupon-button {
+            background: #f7941e;
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .coupon-button:hover {
+            background: #d67d0e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 148, 30, 0.4);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -308,6 +400,34 @@
             <div class="max-w-3xl mx-auto space-y-4">
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Is this just another management fad?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Fair question! But this isn't some buzzword-laden "synergy optimization framework." It's literally just: pick work, do work, ship work, repeat every two weeks. If it stops working for us, we change it in our retros. No consultants, no certification programs, no "agile coaches" in khakis required. 😏</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Can we skip meetings if we're "too busy"?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">If you're too busy for a 15-minute standup, that's <em>exactly</em> why we need this process. 😅 These meetings prevent the "I had no idea you were blocked for 3 days" situations that waste way more time. Think of them as time <strong>investments</strong>, not time drains. Plus, standup is literally "say 3 things and get back to work."</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">What if my idea is so brilliant it can't wait for a sprint?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">We've all had those eureka moments! The good news: sprints are only <strong>two weeks</strong>, not an eternity. Pop your genius idea in the backlog refinement meeting—it's like a VIP lounge where great ideas get fast-tracked. If it's truly urgent, that's what our 20% buffer is for. But "I had a random thought in the shower" probably can wait 48 hours. 🚿</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">What if I actually liked the chaos?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Look, we get it—there's a certain thrill to firefighting. But there's also burnout, missed deadlines, and that 3am "did I break prod?" anxiety. This process gives you the <em>best</em> kind of chaos: the creative problem-solving kind, not the "everything is on fire" kind. Plus, you'll have more energy for actual fun chaos outside of work. 🎢</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">A Thursday sprint start seems unusual. Why not Monday?</span>
                         <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
@@ -369,6 +489,19 @@
                 <button id="closeModal" class="text-white hover:text-[#f7941e] text-3xl leading-none">&times;</button>
             </div>
             <p id="modalDescription" class="text-white/90 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <!-- Coupon Popup Modal -->
+    <div id="couponModal" class="modal">
+        <div class="coupon-popup">
+            <button id="closeCoupon" class="coupon-close">&times;</button>
+            <div class="coupon-badge">LIMITED OFFER</div>
+            <h3 id="couponTitle" class="coupon-title"></h3>
+            <p id="couponSubtitle" class="coupon-subtitle"></p>
+            <div class="coupon-divider"></div>
+            <p id="couponDetails" class="coupon-details"></p>
+            <button id="couponButton" class="coupon-button"></button>
         </div>
     </div>
 
@@ -473,6 +606,125 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     modal.classList.remove('active');
+                }
+            });
+
+            // Coupon Popup Logic with Randomization
+            const couponModal = document.getElementById('couponModal');
+            const closeCoupon = document.getElementById('closeCoupon');
+            const couponButton = document.getElementById('couponButton');
+            const couponTitle = document.getElementById('couponTitle');
+            const couponSubtitle = document.getElementById('couponSubtitle');
+            const couponDetails = document.getElementById('couponDetails');
+
+            // Define coupon variants with probabilities
+            const couponVariants = [
+                {
+                    title: "🎉 CONGRATULATIONS!",
+                    subtitle: "You've scrolled this far!",
+                    details: "Your reward: A seat at EVERY meeting! (Don't worry, they're actually useful now.)",
+                    button: "I'm Honored",
+                    probability: 20
+                },
+                {
+                    title: "LIMITED TIME OFFER",
+                    subtitle: "50% Off Chaos, 100% More Structure!",
+                    details: "Trade unlimited interruptions for focused sprint work. Act now—sanity not included, but highly likely.",
+                    button: "Take My Free Time!",
+                    probability: 20
+                },
+                {
+                    title: "EXCLUSIVE DEAL",
+                    subtitle: "Read 3 FAQs, Get Accountability Free!",
+                    details: "Plus unlimited deploys and zero guilt about leaving work at 5pm. Limited to teams ready for success.",
+                    button: "I'm In",
+                    probability: 15
+                },
+                {
+                    title: "🏆 ACHIEVEMENT UNLOCKED",
+                    subtitle: "Actually Reading the Proposal!",
+                    details: "Your prize: A more organized team, fewer 3am panic attacks, and the sweet satisfaction of shipping on time.",
+                    button: "Claim Prize",
+                    probability: 20
+                },
+                {
+                    title: "FLASH SALE",
+                    subtitle: "Trade Unlimited Interruptions for Focus!",
+                    details: "Get two-week sprints, clear priorities, and the ability to actually finish what you start. No refunds, no regrets.",
+                    button: "Show Me the Refund Policy",
+                    probability: 15
+                },
+                {
+                    title: "SPECIAL OFFER",
+                    subtitle: "Ask Unlimited Questions!",
+                    details: "Side effects may include: clarity, productivity, high-fives, and actually knowing what everyone else is working on.",
+                    button: "Subscribe Now",
+                    probability: 10
+                }
+            ];
+
+            // Function to select random variant based on probability
+            function selectRandomVariant() {
+                const totalProbability = couponVariants.reduce((sum, v) => sum + v.probability, 0);
+                let random = Math.random() * totalProbability;
+                
+                for (let variant of couponVariants) {
+                    random -= variant.probability;
+                    if (random <= 0) {
+                        return variant;
+                    }
+                }
+                return couponVariants[0]; // Fallback
+            }
+
+            // Check if coupon has been shown this session
+            if (!sessionStorage.getItem('couponShown')) {
+                const faqSection = document.getElementById('q-a');
+                
+                // Use Intersection Observer to detect when FAQ is visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !sessionStorage.getItem('couponShown')) {
+                            // Delay popup by 1 second for better UX
+                            setTimeout(() => {
+                                const selectedVariant = selectRandomVariant();
+                                
+                                // Populate modal with selected variant
+                                couponTitle.textContent = selectedVariant.title;
+                                couponSubtitle.textContent = selectedVariant.subtitle;
+                                couponDetails.textContent = selectedVariant.details;
+                                couponButton.textContent = selectedVariant.button;
+                                
+                                // Show modal
+                                couponModal.classList.add('active');
+                                sessionStorage.setItem('couponShown', 'true');
+                            }, 1000);
+                            
+                            observer.unobserve(faqSection);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                observer.observe(faqSection);
+            }
+
+            // Close coupon modal
+            function closeCouponModal() {
+                couponModal.classList.remove('active');
+            }
+
+            closeCoupon.addEventListener('click', closeCouponModal);
+            couponButton.addEventListener('click', closeCouponModal);
+            
+            couponModal.addEventListener('click', (e) => {
+                if (e.target === couponModal) {
+                    closeCouponModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && couponModal.classList.contains('active')) {
+                    closeCouponModal();
                 }
             });
         });
