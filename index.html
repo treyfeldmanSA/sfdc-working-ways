@@ -53,6 +53,39 @@
             background-color: #005e9e;
             border: 2px solid #f7941e;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1a4d7a;
+            border: 2px solid #f7941e;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 1rem;
+            position: relative;
+        }
+        .meeting-box {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .meeting-box:hover {
+            transform: translateY(-2px);
+            border-color: #f7941e;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -126,23 +159,23 @@
                 <h3 class="text-xl font-bold text-[#f7941e] mb-2 text-center">Our New Cadence: A Healthier Rhythm</h3>
                 <p class="text-center text-white/90 mb-6">We propose a Thursday-Wednesday sprint cycle to protect our weekends and improve focus.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-center">
-                    <div class="bg-black/30 p-4 rounded-lg border border-white/20">
+                    <div class="meeting-box bg-black/30 p-4 rounded-lg border border-white/20" data-meeting="sprint-planning">
                         <h4 class="font-semibold text-white">Sprint Planning</h4>
                         <p class="text-sm text-white/90 mt-1">2 hours, Thursdays</p>
                     </div>
-                    <div class="bg-black/30 p-4 rounded-lg border border-white/20">
+                    <div class="meeting-box bg-black/30 p-4 rounded-lg border border-white/20" data-meeting="daily-standup">
                         <h4 class="font-semibold text-white">Daily Stand-up</h4>
                         <p class="text-sm text-white/90 mt-1">15 mins, daily</p>
                     </div>
-                    <div class="bg-black/30 p-4 rounded-lg border border-white/20">
+                    <div class="meeting-box bg-black/30 p-4 rounded-lg border border-white/20" data-meeting="backlog-refinement">
                         <h4 class="font-semibold text-white">Backlog Refinement</h4>
                         <p class="text-sm text-white/90 mt-1">1 hour, Wednesdays</p>
                     </div>
-                    <div class="bg-black/30 p-4 rounded-lg border border-white/20">
+                    <div class="meeting-box bg-black/30 p-4 rounded-lg border border-white/20" data-meeting="sprint-review">
                         <h4 class="font-semibold text-white">Sprint Review</h4>
                         <p class="text-sm text-white/90 mt-1">1 hour, Wednesdays</p>
                     </div>
-                    <div class="bg-black/30 p-4 rounded-lg border border-white/20">
+                    <div class="meeting-box bg-black/30 p-4 rounded-lg border border-white/20" data-meeting="sprint-retro">
                         <h4 class="font-semibold text-white">Sprint Retrospective</h4>
                         <p class="text-sm text-white/90 mt-1">1 hour, Wednesdays</p>
                     </div>
@@ -258,42 +291,42 @@
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">A Thursday sprint start seems unusual. Why not Monday?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">This is a strategic choice to improve work-life balance and focus. A mid-week cadence avoids the "Friday rush" to finish work and prevents stakeholders from missing important demos. It turns Friday into a productive "maker day" to start new work, and ensures we don't lose context over the weekend before a big planning session on Monday.</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">How often will we deploy to production?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Our goal is to <strong>deploy at the end of every sprint.</strong> Shipping value frequently is key to reducing risk and increasing momentum. Each deployment will be small and manageable. If our process makes this difficult, then improving our deployment automation will become a priority task <em>within</em> our sprints.</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">Will we get less work done in a shorter sprint?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">It's a common concern, but teams almost always find the opposite is true. We'll complete fewer story points in a single two-week sprint than a four-week one, but our overall throughput of valuable, <em>completed</em> work will increase. This is because shorter sprints dramatically reduce wasted time from context-switching, working on the wrong things due to delayed feedback, and having work sit idle waiting for review. We're shifting our focus from being "busy" to being "effective."</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">What if a feature is too big for a two-week sprint?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">This is exactly what the <strong>Backlog Refinement</strong> meeting is for. If a story is too large to be completed in a single sprint, it's a sign that it needs to be broken down into smaller, independent chunks of value. The job of the tech leads and product manager is to slice these "epics" into sprint-sized stories <em>before</em> they are ever considered for planning. This ensures we can still deliver value incrementally, even on large projects.</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">What is this "Definition of Ready" and why is it important?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">The "Definition of Ready" is our team's shared quality checklist. It's a simple agreement that a story must have clear requirements, acceptance criteria, and necessary designs <em>before</em> it can be pulled into a sprint. This is our primary tool for preventing chaos. It stops half-baked ideas from disrupting our focus and ensures that when a developer picks up a task, they have everything they need to start work immediately.</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">What happens to unplanned work and urgent bugs?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">We will plan for it honestly. As part of our roadmap, we will formally allocate a <strong>20% capacity buffer</strong> in every sprint dedicated to handling urgent non-roadmap work. This means we won't constantly be "interrupting" planned work; we'll be using a pre-allocated budget for it. This makes our planning more realistic and protects our roadmap commitments.</p></div>
                 </div>
@@ -315,6 +348,17 @@
         </section>
 
     </main>
+
+    <!-- Meeting Modal -->
+    <div id="meetingModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modalTitle" class="text-2xl font-bold text-[#f7941e]"></h3>
+                <button id="closeModal" class="text-white hover:text-[#f7941e] text-3xl leading-none">&times;</button>
+            </div>
+            <p id="modalDescription" class="text-white/90 leading-relaxed"></p>
+        </div>
+    </div>
 
     <footer class="bg-black/40 border-t border-white/20">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-white/90 text-sm">
@@ -361,6 +405,62 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // Meeting Modal Logic
+            const modal = document.getElementById('meetingModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeModal = document.getElementById('closeModal');
+            
+            const meetingInfo = {
+                'sprint-planning': {
+                    title: 'Sprint Planning',
+                    description: 'A collaborative meeting where the team selects work from the product backlog and plans what can be completed during the sprint. The team discusses each story, asks clarifying questions, and commits to a sprint goal. This is where we align on priorities and ensure everyone understands what success looks like for the sprint.'
+                },
+                'daily-standup': {
+                    title: 'Daily Stand-up',
+                    description: 'A quick daily sync where each team member shares: What they completed yesterday, what they\'re working on today, and any blockers. This keeps the team coordinated, helps identify issues early, and ensures we\'re all moving in the same direction. It\'s intentionally brief to maximize productive work time.'
+                },
+                'backlog-refinement': {
+                    title: 'Backlog Refinement',
+                    description: 'A weekly session where the team reviews upcoming stories in the backlog. We clarify requirements, break down large stories, estimate complexity, and ensure stories meet our "Definition of Ready." This preparation makes sprint planning much smoother and prevents surprises during the sprint.'
+                },
+                'sprint-review': {
+                    title: 'Sprint Review',
+                    description: 'A demo session at the end of each sprint where the team showcases completed work to stakeholders. This is our opportunity to gather feedback, celebrate wins, and validate that we\'re building the right things. Stakeholders can see real progress and provide input that shapes future work.'
+                },
+                'sprint-retro': {
+                    title: 'Sprint Retrospective',
+                    description: 'A team reflection meeting held after the sprint review. We discuss what went well, what could be improved, and identify actionable changes for the next sprint. This is our continuous improvement engine—a safe space to honestly assess our process and make it better.'
+                }
+            };
+
+            document.querySelectorAll('.meeting-box').forEach(box => {
+                box.addEventListener('click', () => {
+                    const meetingType = box.getAttribute('data-meeting');
+                    const info = meetingInfo[meetingType];
+                    
+                    modalTitle.textContent = info.title;
+                    modalDescription.textContent = info.description;
+                    modal.classList.add('active');
+                });
+            });
+
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
             });
         });
     </script>
