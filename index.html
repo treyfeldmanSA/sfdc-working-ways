@@ -578,6 +578,14 @@
                         <p class="text-sm text-white/90 mt-1">1 hour, Last Wednesday</p>
                     </div>
                 </div>
+                <div class="text-center mt-6">
+                    <button id="viewFullSprintBtn" class="inline-flex items-center gap-2 text-[#f7941e] hover:text-[#d67d0e] font-semibold transition-colors">
+                        View a Full Sprint
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -781,6 +789,87 @@
         </div>
     </div>
 
+    <!-- Full Sprint Timeline Modal -->
+    <div id="fullSprintModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="flex justify-between items-start mb-6">
+                <h3 class="text-2xl font-bold text-[#f7941e]">The Two-Week Sprint: Day by Day</h3>
+                <button id="closeFullSprintModal" class="text-white hover:text-[#f7941e] text-3xl leading-none">&times;</button>
+            </div>
+            <div class="space-y-8">
+                <!-- Week 1 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-white mb-4 border-b border-[#f7941e] pb-2">Week 1: Focus on Development</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                            <h5 class="font-semibold text-white">Day 1 (Thursday): Sprint Kickoff</h5>
+                            <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Sprint Planning (2h)</p>
+                            <p class="text-white/90 text-sm"><strong>Afternoon:</strong> Begin development work.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-white/30">
+                            <h5 class="font-semibold text-white">Day 2 (Friday): Development Day</h5>
+                            <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-white/30">
+                            <h5 class="font-semibold text-white">Day 3 (Monday): Development Day</h5>
+                            <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-white/30">
+                            <h5 class="font-semibold text-white">Day 4 (Tuesday): Development Day</h5>
+                            <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                            <h5 class="font-semibold text-white">Day 5 (Wednesday): Refinement Day</h5>
+                            <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Development.</p>
+                            <p class="text-white/90 text-sm"><strong>Afternoon:</strong> Backlog Refinement (1h) to prepare for the next sprint.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Week 2 -->
+                <div>
+                    <h4 class="text-xl font-semibold text-white mb-4 border-b border-[#f7941e] pb-2">Week 2: Focus on Finalization & Release</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="pl-4 border-l-2 border-white/30">
+                            <h5 class="font-semibold text-white">Day 6 (Thursday): Development Day</h5>
+                            <p class="text-white/90 text-sm mt-1">A full day dedicated to focused development.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-white/30">
+                            <h5 class="font-semibold text-white">Day 7 (Friday): Final Development Day</h5>
+                            <p class="text-white/90 text-sm mt-1">The last full day for feature development and coding.</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                            <h5 class="font-semibold text-white">Day 8 (Monday): Feature Freeze Day</h5>
+                            <p class="text-white/90 text-sm mt-1"><strong>Morning/Afternoon:</strong> Final push to get all code tested, reviewed, and merged.</p>
+                            <p class="text-white/90 text-sm"><strong>Deadline:</strong> All new feature code is merged by EOD.</p>
+                            <p class="text-white/90 text-sm"><strong>4:00 PM:</strong> Internal Team Demo (The "Dress Rehearsal").</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                            <h5 class="font-semibold text-white">Day 9 (Tuesday): Demo Day</h5>
+                            <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Buffer time to fix any critical bugs found in the internal demo.</p>
+                            <p class="text-white/90 text-sm"><strong>1:00 PM:</strong> Sprint Review (The External Demo for stakeholders).</p>
+                        </div>
+                        
+                        <div class="pl-4 border-l-2 border-[#f7941e]">
+                            <h5 class="font-semibold text-white">Day 10 (Wednesday): Release & Reflect Day</h5>
+                            <p class="text-white/90 text-sm mt-1"><strong>Morning:</strong> Deployment to Production.</p>
+                            <p class="text-white/90 text-sm"><strong>2:00 PM:</strong> Sprint Retrospective to discuss the sprint and process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Coupon Popup Modal -->
     <div id="couponModal" class="modal">
         <div class="coupon-popup">
@@ -975,6 +1064,31 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && planningPokerModal.classList.contains('active')) {
                     planningPokerModal.classList.remove('active');
+                }
+            });
+
+            // Full Sprint Modal Logic
+            const fullSprintModal = document.getElementById('fullSprintModal');
+            const closeFullSprintModal = document.getElementById('closeFullSprintModal');
+            const viewFullSprintBtn = document.getElementById('viewFullSprintBtn');
+            
+            viewFullSprintBtn.addEventListener('click', () => {
+                fullSprintModal.classList.add('active');
+            });
+
+            closeFullSprintModal.addEventListener('click', () => {
+                fullSprintModal.classList.remove('active');
+            });
+
+            fullSprintModal.addEventListener('click', (e) => {
+                if (e.target === fullSprintModal) {
+                    fullSprintModal.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && fullSprintModal.classList.contains('active')) {
+                    fullSprintModal.classList.remove('active');
                 }
             });
 
