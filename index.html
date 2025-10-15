@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposal: A Better Sprint Process</title>
+    
+    <!-- Meta Tags for SEO and Link Previews -->
+    <meta name="description" content="An interactive proposal to transition our team from 4-week sprints to focused, effective 2-week sprints. Moving from chaos to clarity with clear roles, efficient meetings, and predictable delivery.">
+    <meta name="author" content="Trey Feldman">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://treyfeldmansa.github.io/sfdc-working-ways/">
+    <meta property="og:title" content="A Better Way to Build - Sprint Process Proposal">
+    <meta property="og:description" content="An interactive proposal to move our team from chaos to clarity with focused, two-week sprints.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://treyfeldmansa.github.io/sfdc-working-ways/">
+    <meta property="twitter:title" content="A Better Way to Build - Sprint Process Proposal">
+    <meta property="twitter:description" content="An interactive proposal to move our team from chaos to clarity with focused, two-week sprints.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,6 +212,55 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(247, 148, 30, 0.4);
         }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 40;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background-color: rgba(247, 148, 30, 0.1);
+            color: #f7941e;
+        }
+        .hamburger {
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -206,6 +271,7 @@
                 <div class="flex items-center">
                     <span class="text-xl font-bold text-white">New Process Proposal</span>
                 </div>
+                <!-- Desktop Navigation -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#problem" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">The Why</a>
@@ -216,8 +282,25 @@
                         <a href="#feedback" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">Feedback</a>
                     </div>
                 </div>
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="hamburger" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </nav>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#problem" class="mobile-nav-link">The Why</a>
+            <a href="#proposal" class="mobile-nav-link">The Proposal</a>
+            <a href="#roadmap" class="mobile-nav-link">Roadmap</a>
+            <a href="#roles" class="mobile-nav-link">Roles</a>
+            <a href="#q-a" class="mobile-nav-link">Q&A</a>
+            <a href="#feedback" class="mobile-nav-link">Feedback</a>
+        </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -514,6 +597,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+            
             // Accordion logic
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             accordionHeaders.forEach(header => {
