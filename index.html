@@ -166,6 +166,11 @@
             position: relative;
             max-height: calc(100vh - 2rem);
             overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
         .modal-content-wide {
             max-width: 650px;
