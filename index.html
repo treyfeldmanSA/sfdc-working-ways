@@ -261,6 +261,89 @@
         .hamburger.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+        
+        /* Chatbot Styles */
+        .chatbot-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #f7941e;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: chatbotBounce 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        .chatbot-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(247, 148, 30, 0.5);
+        }
+        .chatbot-bubble svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+        @keyframes chatbotBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .chatbot-message {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: white;
+            color: #005e9e;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            pointer-events: none;
+            max-width: 250px;
+        }
+        .chatbot-message.show {
+            animation: messageAppear 0.3s ease forwards;
+        }
+        .chatbot-message.hide {
+            animation: messageFade 0.5s ease forwards;
+        }
+        @keyframes messageAppear {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        @keyframes messageFade {
+            to {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+        }
+        .chatbot-bubble.poof {
+            animation: poofAway 0.5s ease forwards;
+        }
+        @keyframes poofAway {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.3) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -588,6 +671,19 @@
         </div>
     </div>
 
+    <!-- Chatbot Widget -->
+    <div id="chatbotBubble" class="chatbot-bubble">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            <circle cx="12" cy="10" r="1.5"/>
+            <circle cx="8" cy="10" r="1.5"/>
+            <circle cx="16" cy="10" r="1.5"/>
+        </svg>
+    </div>
+    <div id="chatbotMessage" class="chatbot-message">
+        Sorry, we're closed! 🌙
+    </div>
+
     <!-- Planning Poker Info Modal -->
     <div id="planningPokerModal" class="modal">
         <div class="modal-content">
@@ -866,6 +962,33 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && couponModal.classList.contains('active')) {
                     closeCouponModal();
+                }
+            });
+
+            // Chatbot Logic
+            const chatbotBubble = document.getElementById('chatbotBubble');
+            const chatbotMessage = document.getElementById('chatbotMessage');
+            let chatbotClicked = false;
+
+            chatbotBubble.addEventListener('click', () => {
+                if (!chatbotClicked) {
+                    chatbotClicked = true;
+                    
+                    // Show the message
+                    chatbotMessage.classList.add('show');
+                    
+                    // After 2 seconds, start the poof animation
+                    setTimeout(() => {
+                        chatbotMessage.classList.remove('show');
+                        chatbotMessage.classList.add('hide');
+                        chatbotBubble.classList.add('poof');
+                        
+                        // Remove both elements after animation completes
+                        setTimeout(() => {
+                            chatbotBubble.remove();
+                            chatbotMessage.remove();
+                        }, 500);
+                    }, 2000);
                 }
             });
         });
