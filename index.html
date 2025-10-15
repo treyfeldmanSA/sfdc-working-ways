@@ -293,39 +293,106 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        .chatbot-message {
+        .chatbot-window {
             position: fixed;
             bottom: 6rem;
             right: 2rem;
+            width: 320px;
             background: white;
-            color: #005e9e;
-            padding: 1rem 1.5rem;
             border-radius: 1rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            font-weight: 600;
             z-index: 999;
             opacity: 0;
             transform: scale(0.8) translateY(10px);
             pointer-events: none;
-            max-width: 250px;
+            overflow: hidden;
         }
-        .chatbot-message.show {
-            animation: messageAppear 0.3s ease forwards;
+        .chatbot-window.show {
+            animation: chatWindowAppear 0.3s ease forwards;
+            pointer-events: auto;
         }
-        .chatbot-message.hide {
-            animation: messageFade 0.5s ease forwards;
+        .chatbot-window.hide {
+            animation: chatWindowFade 0.5s ease forwards;
         }
-        @keyframes messageAppear {
+        @keyframes chatWindowAppear {
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
-        @keyframes messageFade {
+        @keyframes chatWindowFade {
             to {
                 opacity: 0;
                 transform: scale(0.8) translateY(10px);
             }
+        }
+        .chatbot-header {
+            background: #f7941e;
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .chatbot-messages {
+            padding: 1rem;
+            min-height: 120px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+        .chatbot-msg {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: msgSlideIn 0.3s ease;
+        }
+        @keyframes msgSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .chatbot-input-area {
+            display: flex;
+            padding: 0.75rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+        .chatbot-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            outline: none;
+            font-size: 0.875rem;
+        }
+        .chatbot-input:focus {
+            border-color: #f7941e;
+        }
+        .chatbot-send {
+            margin-left: 0.5rem;
+            background: #f7941e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .chatbot-send:hover {
+            background: #d67d0e;
+        }
+        .chatbot-send:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
         }
         .chatbot-bubble.poof {
             animation: poofAway 0.5s ease forwards;
@@ -687,8 +754,13 @@
             <circle cx="16" cy="10" r="1.5"/>
         </svg>
     </div>
-    <div id="chatbotMessage" class="chatbot-message">
-        Sorry, we're closed! 🌙
+    <div id="chatbotWindow" class="chatbot-window">
+        <div class="chatbot-header">Chat Support</div>
+        <div id="chatbotMessages" class="chatbot-messages"></div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type a message...">
+            <button id="chatbotSend" class="chatbot-send">Send</button>
+        </div>
     </div>
 
     <!-- Planning Poker Info Modal -->
@@ -974,28 +1046,68 @@
 
             // Chatbot Logic
             const chatbotBubble = document.getElementById('chatbotBubble');
-            const chatbotMessage = document.getElementById('chatbotMessage');
-            let chatbotClicked = false;
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const chatbotMessages = document.getElementById('chatbotMessages');
+            const chatbotInput = document.getElementById('chatbotInput');
+            const chatbotSend = document.getElementById('chatbotSend');
+            let chatbotOpened = false;
+            let userHasReplied = false;
+
+            function addMessage(text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'chatbot-msg';
+                msgDiv.textContent = text;
+                chatbotMessages.appendChild(msgDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            function poofAway() {
+                chatbotWindow.classList.remove('show');
+                chatbotWindow.classList.add('hide');
+                chatbotBubble.classList.add('poof');
+                
+                setTimeout(() => {
+                    chatbotBubble.remove();
+                    chatbotWindow.remove();
+                }, 500);
+            }
 
             chatbotBubble.addEventListener('click', () => {
-                if (!chatbotClicked) {
-                    chatbotClicked = true;
+                if (!chatbotOpened) {
+                    chatbotOpened = true;
+                    chatbotWindow.classList.add('show');
                     
-                    // Show the message
-                    chatbotMessage.classList.add('show');
-                    
-                    // After 2 seconds, start the poof animation
+                    // Bot says "Hi!" first
                     setTimeout(() => {
-                        chatbotMessage.classList.remove('show');
-                        chatbotMessage.classList.add('hide');
-                        chatbotBubble.classList.add('poof');
+                        addMessage('Hi! 👋');
+                    }, 300);
+                }
+            });
+
+            function handleUserMessage() {
+                if (!userHasReplied && chatbotInput.value.trim()) {
+                    userHasReplied = true;
+                    chatbotInput.disabled = true;
+                    chatbotSend.disabled = true;
+                    chatbotInput.value = '';
+                    
+                    // Bot responds after a brief delay
+                    setTimeout(() => {
+                        addMessage("Sorry, we're actually closed! 🌙");
                         
-                        // Remove both elements after animation completes
+                        // Poof away after showing the message
                         setTimeout(() => {
-                            chatbotBubble.remove();
-                            chatbotMessage.remove();
-                        }, 500);
-                    }, 2000);
+                            poofAway();
+                        }, 2000);
+                    }, 800);
+                }
+            }
+
+            chatbotSend.addEventListener('click', handleUserMessage);
+            
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
                 }
             });
         });
