@@ -413,7 +413,7 @@
                     <div class="timeline-dot"></div>
                     <p class="font-medium text-[#f7941e] text-sm">Tuesday, Oct 21</p>
                     <h4 class="text-lg font-semibold text-white mt-1">Estimation</h4>
-                    <p class="text-white/90">Trey and Joe will lead the Planning Poker session to estimate the refined stories.</p>
+                    <p class="text-white/90">Trey and Joe will lead the <span class="planning-poker-link" style="color: #f7941e; text-decoration: underline; cursor: pointer; font-weight: 500;">Planning Poker</span> session to estimate the refined stories.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -588,6 +588,19 @@
         </div>
     </div>
 
+    <!-- Planning Poker Info Modal -->
+    <div id="planningPokerModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold text-[#f7941e]">Planning Poker</h3>
+                <button id="closePlanningPoker" class="text-white hover:text-[#f7941e] text-3xl leading-none">&times;</button>
+            </div>
+            <p class="text-white/90 leading-relaxed mb-4">Planning Poker is a collaborative estimation technique where team members use cards (typically numbered 1, 2, 3, 5, 8, 13, 21) to vote on the complexity or effort required for a story.</p>
+            <p class="text-white/90 leading-relaxed mb-4"><strong class="text-[#f7941e]">How it works:</strong> Everyone privately selects a card representing their estimate, then all cards are revealed simultaneously. If there's disagreement (like a 3 and a 13), those people explain their reasoning. The team discusses and revotes until consensus is reached.</p>
+            <p class="text-white/90 leading-relaxed"><strong class="text-[#f7941e]">Why it's effective:</strong> It prevents anchoring bias (where the first person's estimate influences everyone else), encourages discussion about hidden complexity, and ensures the whole team understands the work involved.</p>
+        </div>
+    </div>
+
     <footer class="bg-black/40 border-t border-white/20">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-white/90 text-sm">
             <p>&copy; 2025 | A proposal for a better way to work. | <a href="terms.html" class="text-[#f7941e] hover:underline">Terms & Conditions</a></p>
@@ -707,6 +720,33 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     modal.classList.remove('active');
+                }
+            });
+
+            // Planning Poker Modal Logic
+            const planningPokerModal = document.getElementById('planningPokerModal');
+            const closePlanningPoker = document.getElementById('closePlanningPoker');
+            const planningPokerLink = document.querySelector('.planning-poker-link');
+            
+            if (planningPokerLink) {
+                planningPokerLink.addEventListener('click', () => {
+                    planningPokerModal.classList.add('active');
+                });
+            }
+
+            closePlanningPoker.addEventListener('click', () => {
+                planningPokerModal.classList.remove('active');
+            });
+
+            planningPokerModal.addEventListener('click', (e) => {
+                if (e.target === planningPokerModal) {
+                    planningPokerModal.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && planningPokerModal.classList.contains('active')) {
+                    planningPokerModal.classList.remove('active');
                 }
             });
 
