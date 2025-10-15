@@ -307,6 +307,18 @@
             pointer-events: none;
             overflow: hidden;
         }
+        @media (max-width: 640px) {
+            .chatbot-window {
+                width: calc(100vw - 2rem);
+                right: 1rem;
+                left: 1rem;
+                bottom: 5rem;
+            }
+            .chatbot-bubble {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
         .chatbot-window.show {
             animation: chatWindowAppear 0.3s ease forwards;
             pointer-events: auto;
@@ -348,6 +360,12 @@
             color: #1e293b;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             animation: msgSlideIn 0.3s ease;
+        }
+        .chatbot-msg.user {
+            background: #005e9e;
+            color: white;
+            margin-left: 2rem;
+            text-align: right;
         }
         @keyframes msgSlideIn {
             from {
@@ -1050,9 +1068,9 @@
             let chatbotOpened = false;
             let userHasReplied = false;
 
-            function addMessage(text) {
+            function addMessage(text, isUser = false) {
                 const msgDiv = document.createElement('div');
-                msgDiv.className = 'chatbot-msg';
+                msgDiv.className = isUser ? 'chatbot-msg user' : 'chatbot-msg';
                 msgDiv.textContent = text;
                 chatbotMessages.appendChild(msgDiv);
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -1085,10 +1103,14 @@
 
             function handleUserMessage() {
                 if (!userHasReplied && chatbotInput.value.trim()) {
+                    const userText = chatbotInput.value.trim();
                     userHasReplied = true;
                     chatbotInput.disabled = true;
                     chatbotSend.disabled = true;
                     chatbotInput.value = '';
+                    
+                    // Show user's message
+                    addMessage(userText, true);
                     
                     // Bot responds after a brief delay
                     setTimeout(() => {
