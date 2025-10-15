@@ -360,12 +360,16 @@
             color: #1e293b;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             animation: msgSlideIn 0.3s ease;
+            max-width: 80%;
+            width: fit-content;
+            display: inline-block;
         }
         .chatbot-msg.user {
             background: #005e9e;
             color: white;
-            margin-left: 2rem;
-            text-align: right;
+            margin-left: auto;
+            margin-right: 0;
+            display: block;
         }
         @keyframes msgSlideIn {
             from {
