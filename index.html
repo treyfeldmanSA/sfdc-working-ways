@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal: A Better Sprint Process</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #cbd5e1; /* slate-300 */
+        }
+        .nav-link.active {
+            color: #0ea5e9; /* sky-500 */
+            border-bottom-color: #0ea5e9;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-header.open + .accordion-content {
+            max-height: 500px; /* Adjust as needed */
+            transition: max-height 0.5s ease-in;
+        }
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        /* Custom timeline styles */
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+            border-left: 2px solid #334155; /* slate-700 */
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.6rem;
+            top: 0.25rem;
+            width: 1.125rem;
+            height: 1.125rem;
+            border-radius: 9999px;
+            background-color: #0f172a;
+            border: 2px solid #0ea5e9; /* sky-500 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-slate-900/70 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-sky-500">New Process Proposal</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problem" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">The Why</a>
+                        <a href="#proposal" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">The Proposal</a>
+                        <a href="#roadmap" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">Roadmap</a>
+                        <a href="#roles" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">Roles</a>
+                        <a href="#q-a" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">Q&A</a>
+                        <a href="#feedback" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-sky-500 border-b-2 border-transparent transition-colors">Feedback</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Hero Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">
+                A Better Way to Build
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
+                An interactive proposal to move our Roadmap Team from chaos to clarity with focused, two-week sprints.
+            </p>
+        </section>
+
+        <!-- The Problem & Goal -->
+        <section id="problem" class="py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">The Why: Acknowledging Our Challenges</h2>
+                <p class="mt-2 text-slate-400">Our current process isn't serving us. Let's be honest about the problems to build a better solution.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold text-red-400 mb-3">Our Current Reality (4-Week Sprints)</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-start"><span class="text-red-400 mr-2">✗</span> Unpredictable & Chaotic Sprints</li>
+                        <li class="flex items-start"><span class="text-red-400 mr-2">✗</span> Extremely Delayed Feedback Loops</li>
+                        <li class="flex items-start"><span class="text-red-400 mr-2">✗</span> Constant Context-Switching</li>
+                        <li class="flex items-start"><span class="text-red-400 mr-2">✗</span> Loss of Momentum & Low Morale</li>
+                        <li class="flex items-start"><span class="text-red-400 mr-2">✗</span> Unplanned Work Derails Roadmap Goals</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold text-green-400 mb-3">Our Desired Future (2-Week Sprints)</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-start"><span class="text-green-400 mr-2">✓</span> Calm, Focused & Predictable Work</li>
+                        <li class="flex items-start"><span class="text-green-400 mr-2">✓</span> Fast Iteration & Quick Feedback</li>
+                        <li class="flex items-start"><span class="text-green-400 mr-2">✓</span> Protected Deep-Work Time</li>
+                        <li class="flex items-start"><span class="text-green-400 mr-2">✓</span> Frequent Wins & Higher Morale</li>
+                        <li class="flex items-start"><span class="text-green-400 mr-2">✓</span> Honest Planning for All Work Types</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Proposal -->
+        <section id="proposal" class="py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">The Proposal: A Low-Risk Experiment</h2>
+                <p class="mt-2 text-slate-400">This isn't a permanent decree. It's an experiment for Sprints 16 & 17 to see if we can build better, together.</p>
+            </div>
+            <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700">
+                <h3 class="text-2xl font-semibold text-sky-400 mb-6">Our New Cadence: The Rhythm of Our Sprints</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-white">Sprint Planning</h4>
+                        <p class="text-sm text-slate-400">2 hours, start of sprint</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-white">Daily Stand-up</h4>
+                        <p class="text-sm text-slate-400">15 mins, daily</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-white">Backlog Refinement</h4>
+                        <p class="text-sm text-slate-400">1 hour, Wednesdays</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-white">Sprint Review</h4>
+                        <p class="text-sm text-slate-400">1 hour, end of sprint</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-white">Sprint Retrospective</h4>
+                        <p class="text-sm text-slate-400">1 hour, end of sprint</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Roadmap -->
+        <section id="roadmap" class="py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Our Path to a Perfect Sprint 16</h2>
+                <p class="mt-2 text-slate-400">A step-by-step plan for a calm, deliberate transition.</p>
+            </div>
+            <div>
+                <!-- Phase 1 -->
+                <h3 class="text-2xl font-semibold text-sky-400 mb-6">Phase 1: The Reset (This Week)</h3>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Wednesday, Oct 15</p>
+                    <h4 class="text-lg font-bold text-white mt-1">Announce Change & Set Cadence</h4>
+                    <p class="text-slate-400">Trey will officially announce the move and walk through the new meeting schedule.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Thursday, Oct 16</p>
+                    <h4 class="text-lg font-bold text-white mt-1">Strategic Backlog Triage</h4>
+                    <p class="text-slate-400">Taylor, Joe, and Rushabh will identify candidate stories for Sprint 16.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Friday, Oct 17</p>
+                    <h4 class="text-lg font-bold text-white mt-1">Define "Ready"</h4>
+                    <p class="text-slate-400">The whole team will agree on our "Definition of Ready" for a story to be sprint-eligible.</p>
+                </div>
+
+                <!-- Phase 2 -->
+                <h3 class="text-2xl font-semibold text-sky-400 my-6">Phase 2: Preparation (Next Week)</h3>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Monday, Oct 20</p>
+                    <h4 class="text-lg font-bold text-white mt-1">First Backlog Refinement</h4>
+                    <p class="text-slate-400">The entire dev team will review and refine the candidate stories.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Tuesday, Oct 21</p>
+                    <h4 class="text-lg font-bold text-white mt-1">Estimation</h4>
+                    <p class="text-slate-400">Joe and Rushabh will lead a Planning Poker session to estimate the refined stories.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Wednesday, Oct 22</p>
+                    <h4 class="text-lg font-bold text-white mt-1">Capacity & Buffer Planning</h4>
+                    <p class="text-slate-400">Trey will facilitate setting our capacity and a 20% buffer for unplanned work.</p>
+                </div>
+                
+                 <!-- Launch Day -->
+                <h3 class="text-2xl font-semibold text-sky-400 my-6">Launch Day</h3>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="font-semibold text-slate-400">Monday, Oct 27</p>
+                    <h4 class="text-lg font-bold text-white mt-1">A Perfect Sprint Planning</h4>
+                    <p class="text-slate-400">A smooth, efficient planning session to kick off our best sprint yet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roles -->
+        <section id="roles" class="py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Clarity is Kindness: Who Owns What?</h2>
+                <p class="mt-2 text-slate-400">Clear roles are essential for a smooth process.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Taylor -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 text-center">
+                    <h3 class="text-lg font-semibold text-white">Taylor</h3>
+                    <p class="text-sky-400 font-medium">Product Manager</p>
+                    <p class="mt-4 text-slate-300 font-bold">Owns the "Why."</p>
+                    <p class="text-sm text-slate-400 mt-1">Manages the backlog and prioritizes work based on business value.</p>
+                </div>
+                <!-- Trey -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 text-center">
+                    <h3 class="text-lg font-semibold text-white">Trey</h3>
+                    <p class="text-sky-400 font-medium">Engineering Manager</p>
+                    <p class="mt-4 text-slate-300 font-bold">Owns the "Team & Process."</p>
+                    <p class="text-sm text-slate-400 mt-1">Facilitates ceremonies, removes impediments, and protects the team.</p>
+                </div>
+                <!-- Supriya & Rahul -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 text-center">
+                    <h3 class="text-lg font-semibold text-white">Supriya & Rahul</h3>
+                    <p class="text-sky-400 font-medium">Project Managers</p>
+                    <p class="mt-4 text-slate-300 font-bold">Owns the "Execution."</p>
+                    <p class="text-sm text-slate-400 mt-1">Tracks progress against the goal and ensures Jira is accurate.</p>
+                </div>
+                <!-- Joe & Rushabh -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 text-center">
+                    <h3 class="text-lg font-semibold text-white">Joe & Rushabh</h3>
+                    <p class="text-sky-400 font-medium">Tech Leads</p>
+                    <p class="mt-4 text-slate-300 font-bold">Owns the "Technical Solution."</p>
+                    <p class="text-sm text-slate-400 mt-1">Guides technical breakdown, ensures code quality, and facilitates estimation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A -->
+        <section id="q-a" class="py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Frequently Asked Questions</h2>
+                <p class="mt-2 text-slate-400">Let's address some common concerns upfront.</p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- Question 1 -->
+                <div class="bg-slate-800/50 rounded-xl border border-slate-700">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Why two weeks? Why not one or three?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="p-6 pt-0 text-slate-300">Two weeks is the industry standard for a reason. It's short enough to create focus and allow for rapid feedback, but long enough to complete a meaningful chunk of work. One week is often too short for complex features, and three weeks starts to reintroduce the planning and feedback delays we're trying to solve.</p>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="bg-slate-800/50 rounded-xl border border-slate-700">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">What happens to unplanned work and urgent bugs?</span>
+                         <svg class="accordion-arrow w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="p-6 pt-0 text-slate-300">We will plan for it honestly. As part of our roadmap, we will formally allocate a **20% capacity buffer** in every sprint dedicated to handling urgent non-roadmap work. This means we won't constantly be "interrupting" planned work; we'll be using a pre-allocated budget for it. This makes our planning more realistic and protects our roadmap commitments.</p>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="bg-slate-800/50 rounded-xl border border-slate-700">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Does this mean we'll have more meetings?</span>
+                         <svg class="accordion-arrow w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="p-6 pt-0 text-slate-300">Not necessarily more meeting *time*, but the meetings will be more frequent and much more focused. A two-hour planning session every two weeks is the same amount of time as a four-hour session every four weeks. The difference is our meetings will be shorter, more effective, and less likely to go off the rails because we're dealing with a smaller, more manageable scope.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback -->
+        <section id="feedback" class="py-16 scroll-mt-16">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Your Input is Critical</h2>
+                <p class="mt-2 text-slate-400">This is a collaborative process. Use the space below to share your thoughts, concerns, or suggestions.</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-slate-800/50 p-8 rounded-xl border border-slate-700">
+                <form id="feedback-form">
+                    <label for="feedback-text" class="block mb-2 font-medium text-slate-300">Your Feedback:</label>
+                    <textarea id="feedback-text" name="feedback" rows="5" class="w-full p-3 bg-slate-800 border border-slate-600 rounded-lg text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="What are your thoughts on this proposal? What are your biggest concerns? What haven't we considered?"></textarea>
+                    <div class="mt-4 text-right">
+                         <button type="submit" class="bg-sky-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-sky-500 transition-colors">Submit Feedback</button>
+                    </div>
+                </form>
+                 <div id="feedback-success" class="hidden mt-4 p-4 bg-green-900/50 border border-green-700 rounded-lg text-center text-green-300">
+                    <p>Thank you! Your feedback has been noted and is crucial to this process.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
+            <p>&copy; 2025 | A proposal for a better way to work.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Accordion logic
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    header.classList.toggle('open');
+                });
+            });
+
+            // Smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Active nav link highlighting on scroll
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Feedback form simulation
+            const feedbackForm = document.getElementById('feedback-form');
+            const successMessage = document.getElementById('feedback-success');
+
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const feedbackText = document.getElementById('feedback-text').value;
+                if(feedbackText.trim() === '') {
+                    alert('Please enter your feedback before submitting.');
+                    return;
+                }
+                
+                // In a real app, this would send data to a server.
+                // Here, we'll simulate it and provide a mailto link as a backup.
+                console.log("Feedback Submitted:", feedbackText);
+
+                const subject = "Feedback on New Sprint Process Proposal";
+                const body = `Hi Trey,\n\nHere's my feedback on the sprint process proposal:\n\n---\n${feedbackText}\n---`;
+                window.location.href = `mailto:trey@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                feedbackForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
