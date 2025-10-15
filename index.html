@@ -16,20 +16,22 @@
         }
         .nav-link {
             position: relative;
+            display: inline-block;
         }
         .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
+            right: 0;
             height: 2px;
             background-color: #f7941e;
-            transition: width 0.3s ease;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         .nav-link:hover::after,
         .nav-link.active::after {
-            width: 100%;
+            transform: scaleX(1);
         }
         .nav-link.active {
             color: #f7941e;
