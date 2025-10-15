@@ -14,9 +14,25 @@
             background-color: #005e9e;
             color: #ffffff;
         }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f7941e;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
         .nav-link.active {
             color: #f7941e;
-            border-bottom-color: #f7941e;
         }
         .accordion-content {
             max-height: 0;
@@ -94,16 +110,16 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-[#f7941e]">New Process Proposal</span>
+                    <span class="text-xl font-bold text-white">New Process Proposal</span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#problem" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">The Why</a>
-                        <a href="#proposal" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">The Proposal</a>
-                        <a href="#roadmap" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">Roadmap</a>
-                        <a href="#roles" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">Roles</a>
-                        <a href="#q-a" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">Q&A</a>
-                        <a href="#feedback" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/90 hover:text-white border-b-2 border-transparent transition-colors">Feedback</a>
+                        <a href="#problem" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">The Why</a>
+                        <a href="#proposal" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">The Proposal</a>
+                        <a href="#roadmap" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">Roadmap</a>
+                        <a href="#roles" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">Roles</a>
+                        <a href="#q-a" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">Q&A</a>
+                        <a href="#feedback" class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors">Feedback</a>
                     </div>
                 </div>
             </div>
