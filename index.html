@@ -23,6 +23,33 @@
     <meta property="twitter:url" content="https://treyfeldmansa.github.io/sfdc-working-ways/">
     <meta property="twitter:title" content="A Better Way to Build - Sprint Process Proposal">
     <meta property="twitter:description" content="An interactive proposal to move our team from chaos to clarity with focused, two-week sprints.">
+    
+    <!-- Datadog RUM -->
+    <script>
+      (function(h,o,u,n,d) {
+        h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+        d=o.createElement(u);d.async=1;d.src=n
+        n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+      })(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js','DD_RUM')
+      window.DD_RUM.onReady(function() {
+        window.DD_RUM.init({
+          clientToken: 'pubf8ec4cfbb9a57fcdc3b0e51c71e4af92',
+          applicationId: '94cb6be9-39b9-459b-81c9-f385a6a36692',
+          // `site` refers to the Datadog site parameter of your organization
+          // see https://docs.datadoghq.com/getting_started/site/
+          site: 'datadoghq.com',
+          service: 'proposal',
+          env: 'prod',
+          // Specify a version number to identify the deployed version of your application in Datadog
+          // version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 100,
+          trackBfcacheViews: true,
+          defaultPrivacyLevel: 'allow',
+        });
+      })
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
