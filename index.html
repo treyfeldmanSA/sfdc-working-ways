@@ -1077,9 +1077,11 @@
                     chatbotOpened = true;
                     chatbotWindow.classList.add('show');
                     
-                    // Bot says "Hi!" first
+                    // Bot says "Hi." first
                     setTimeout(() => {
-                        addMessage('Hi! 👋');
+                        addMessage('Hi.');
+                        // Focus the input after the greeting
+                        chatbotInput.focus();
                     }, 300);
                 }
             });
@@ -1093,12 +1095,17 @@
                     
                     // Bot responds after a brief delay
                     setTimeout(() => {
-                        addMessage("Sorry, we're actually closed! 🌙");
+                        addMessage("What do you think this is, Agentforce?");
                         
-                        // Poof away after showing the message
+                        // 1 second delay, then final message
                         setTimeout(() => {
-                            poofAway();
-                        }, 2000);
+                            addMessage("Sorry. We're closed.");
+                            
+                            // Poof away after showing the message
+                            setTimeout(() => {
+                                poofAway();
+                            }, 2000);
+                        }, 1000);
                     }, 800);
                 }
             }
