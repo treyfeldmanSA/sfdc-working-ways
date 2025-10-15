@@ -398,6 +398,7 @@
                 <p class="mt-2 text-white/90">Let's address some common concerns upfront.</p>
             </div>
             <div class="max-w-3xl mx-auto space-y-4">
+                <!-- General Skepticism -->
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">Is this just another management fad?</span>
@@ -407,24 +408,19 @@
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
-                        <span class="font-semibold text-white">Can we skip meetings if we're "too busy"?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">If you're too busy for a 15-minute standup, that's <em>exactly</em> why we need this process. 😅 These meetings prevent the "I had no idea you were blocked for 3 days" situations that waste way more time. Think of them as time <strong>investments</strong>, not time drains. Plus, <em>standup</em> is literally "say 3 things and get back to work."</p></div>
-                </div>
-                <div class="bg-black/40 rounded-lg border border-white/20">
-                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
-                        <span class="font-semibold text-white">What if my idea is so brilliant it can't wait for a sprint?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">We've all had those eureka moments! The good news: sprints are only <strong>two weeks</strong>, not an eternity. Pop your genius idea in the backlog refinement meeting—it's like a VIP lounge where great ideas get fast-tracked. If it's truly urgent, that's what our 20% buffer is for. But "I had a random thought in the shower" probably can wait 48 hours. 🚿</p></div>
-                </div>
-                <div class="bg-black/40 rounded-lg border border-white/20">
-                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">What if I actually liked the chaos?</span>
                         <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Look, we get it—there's a certain thrill to firefighting. But there's also burnout, missed deadlines, and that 3am "did I break prod?" anxiety. This process gives you the <em>best</em> kind of chaos: the creative problem-solving kind, not the "everything is on fire" kind. Plus, you'll have more energy for actual fun chaos outside of work. 🎢</p></div>
+                </div>
+                
+                <!-- Sprint Concerns -->
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Will we get less work done in a shorter sprint?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">It's a common concern, but teams almost always find the opposite is true. We'll complete fewer story points in a single two-week sprint than a four-week one, but our overall throughput of valuable, <em>completed</em> work will increase. This is because shorter sprints dramatically reduce wasted time from context-switching, working on the wrong things due to delayed feedback, and having work sit idle waiting for review. We're shifting our focus from being "busy" to being "effective."</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
@@ -433,19 +429,14 @@
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">This is a strategic choice to improve work-life balance and focus. A mid-week cadence avoids the "Friday rush" to finish work and prevents stakeholders from missing important demos. It turns Friday into a productive "maker day" to start new work, and ensures we don't lose context over the weekend before a big planning session on Monday.</p></div>
                 </div>
+                
+                <!-- How It Works -->
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
-                        <span class="font-semibold text-white">How often will we deploy to production?</span>
+                        <span class="font-semibold text-white">What is this "Definition of Ready" and why is it important?</span>
                         <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Our goal is to <strong>deploy at the end of every sprint.</strong> Shipping value frequently is key to reducing risk and increasing momentum. Each deployment will be small and manageable. If our process makes this difficult, then improving our deployment automation will become a priority task <em>within</em> our sprints.</p></div>
-                </div>
-                <div class="bg-black/40 rounded-lg border border-white/20">
-                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
-                        <span class="font-semibold text-white">Will we get less work done in a shorter sprint?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">It's a common concern, but teams almost always find the opposite is true. We'll complete fewer story points in a single two-week sprint than a four-week one, but our overall throughput of valuable, <em>completed</em> work will increase. This is because shorter sprints dramatically reduce wasted time from context-switching, working on the wrong things due to delayed feedback, and having work sit idle waiting for review. We're shifting our focus from being "busy" to being "effective."</p></div>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">The "Definition of Ready" is our team's shared quality checklist. It's a simple agreement that a story must have clear requirements, acceptance criteria, and necessary designs <em>before</em> it can be pulled into a sprint. This is our primary tool for preventing chaos. It stops half-baked ideas from disrupting our focus and ensures that when a developer picks up a task, they have everything they need to start work immediately.</p></div>
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
@@ -456,17 +447,33 @@
                 </div>
                 <div class="bg-black/40 rounded-lg border border-white/20">
                     <button class="accordion-header w-full flex justify-between items-center text-left p-6">
-                        <span class="font-semibold text-white">What is this "Definition of Ready" and why is it important?</span>
-                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">The "Definition of Ready" is our team's shared quality checklist. It's a simple agreement that a story must have clear requirements, acceptance criteria, and necessary designs <em>before</em> it can be pulled into a sprint. This is our primary tool for preventing chaos. It stops half-baked ideas from disrupting our focus and ensures that when a developer picks up a task, they have everything they need to start work immediately.</p></div>
-                </div>
-                <div class="bg-black/40 rounded-lg border border-white/20">
-                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
                         <span class="font-semibold text-white">What happens to unplanned work and urgent bugs?</span>
                         <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="accordion-content"><p class="p-6 pt-0 text-white/90">We will plan for it honestly. As part of our roadmap, we will formally allocate a <strong>20% capacity buffer</strong> in every sprint dedicated to handling urgent non-roadmap work. This means we won't constantly be "interrupting" planned work; we'll be using a pre-allocated budget for it. This makes our planning more realistic and protects our roadmap commitments.</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">What if my idea is so brilliant it can't wait for a sprint?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">We've all had those eureka moments! The good news: sprints are only <strong>two weeks</strong>, not an eternity. Pop your genius idea in the backlog refinement meeting—it's like a VIP lounge where great ideas get fast-tracked. If it's truly urgent, that's what our 20% buffer is for. But "I had a random thought in the shower" probably can wait 48 hours. 🚿</p></div>
+                </div>
+                
+                <!-- Meetings & Output -->
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">Can we skip meetings if we're "too busy"?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">If you're too busy for a 15-minute standup, that's <em>exactly</em> why we need this process. 😅 These meetings prevent the "I had no idea you were blocked for 3 days" situations that waste way more time. Think of them as time <strong>investments</strong>, not time drains. Plus, <em>standup</em> is literally "say 3 things and get back to work."</p></div>
+                </div>
+                <div class="bg-black/40 rounded-lg border border-white/20">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-6">
+                        <span class="font-semibold text-white">How often will we deploy to production?</span>
+                        <svg class="accordion-arrow w-6 h-6 text-[#f7941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content"><p class="p-6 pt-0 text-white/90">Our goal is to <strong>deploy at the end of every sprint.</strong> Shipping value frequently is key to reducing risk and increasing momentum. Each deployment will be small and manageable. If our process makes this difficult, then improving our deployment automation will become a priority task <em>within</em> our sprints.</p></div>
                 </div>
             </div>
         </section>
